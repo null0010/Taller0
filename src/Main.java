@@ -3,7 +3,7 @@ public class Main {
         String[] listaNombresClientes = new String[999];
         String[] listaApellidosClientes = new String[999];
         String[] listaRutsClientes = new String[999];
-        String[] listaContraseñasClientes = new String[999];
+        String[] listaContraseasClientes = new String[999];
         String[] listaEstadoPaseMovilidadClientes = new String[999];
 
         String[] listaNombresPeliculasEntradasCompradas = new String[999];
@@ -31,6 +31,7 @@ public class Main {
         int[] listaRecaudacionesMañanaPeliculas = new int[999];
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
+        System.out.println("aaaaaa");
     }
 
 
