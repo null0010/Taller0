@@ -32,4 +32,24 @@ public class Main {
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
     }
+
+
+    public static int[][] generarSalaCine() {
+        int NUMERO_FILAS = 10;
+        int NUMERO_COLUMNAS = 30;
+        int[][] matrizSala = new int[NUMERO_FILAS][NUMERO_COLUMNAS];
+        for (int f = 0; f < NUMERO_FILAS - 6; f++) {
+            for (int c = 5; c < NUMERO_COLUMNAS - 5; c++) {
+                matrizSala[f][c] = -1;
+            }
+        }
+
+        for (int f = 4; f < NUMERO_FILAS; f++) {
+            for (int c = 0; c < NUMERO_COLUMNAS; c++) {
+                matrizSala[f][c] = -1;
+            }
+        }
+
+        return matrizSala;
+    }
 }
