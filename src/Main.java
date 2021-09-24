@@ -31,8 +31,7 @@ public class Main {
         int[] listaRecaudacionesMañanaPeliculas = new int[999];
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
-        int a = 20;
-        int b = 20;
+        int c = 1000;
     }
 
 
