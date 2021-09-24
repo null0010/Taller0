@@ -43,7 +43,7 @@ public class Main {
             for (int c = 5; c < NUMERO_COLUMNAS - 5; c++) {
                 matrizSala[f][c] = -1;
             System.out.println("0000000000");
-            System.out.println("0000000000");
+            
             }
         }
 
