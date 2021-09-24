@@ -31,6 +31,7 @@ public class Main {
         int[] listaRecaudacionesMañanaPeliculas = new int[999];
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
+        int a = 20;
        
     }
 
@@ -55,4 +56,5 @@ public class Main {
 
         return matrizSala;
     }
+    
 }
