@@ -11,15 +11,15 @@ public class Main {
         String[] listaAsientosEntradasCompradas = new String[999];
 
         String[] listaFilasSalas = {"A",
-                "B",
-                "C",
-                "D",
-                "E",
-                "F",
-                "G",
-                "H",
-                "I",
-                "J"};
+                                    "B",
+                                    "C",
+                                    "D",
+                                    "E",
+                                    "F",
+                                    "G",
+                                    "H",
+                                    "I",
+                                    "J"};
         int[][] matrizSalaCine1 = generarSalaCine();
         int[][] matrizSalaCine2 = generarSalaCine();
         int[][] matrizSalaCine3 = generarSalaCine();
