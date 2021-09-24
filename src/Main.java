@@ -31,8 +31,7 @@ public class Main {
         int[] listaRecaudacionesMañanaPeliculas = new int[999];
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
-        System.out.println("aaaaaa");
-        System.out.println("Hello World");
+       
     }
 
 
@@ -43,7 +42,7 @@ public class Main {
         for (int f = 0; f < NUMERO_FILAS - 6; f++) {
             for (int c = 5; c < NUMERO_COLUMNAS - 5; c++) {
                 matrizSala[f][c] = -1;
-                System.out.println("aaaaaa");
+           
             }
         }
 
