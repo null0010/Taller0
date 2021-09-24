@@ -42,6 +42,7 @@ public class Main {
         for (int f = 0; f < NUMERO_FILAS - 6; f++) {
             for (int c = 5; c < NUMERO_COLUMNAS - 5; c++) {
                 matrizSala[f][c] = -1;
+                System.out.println("aaaaaa");
             }
         }
 
