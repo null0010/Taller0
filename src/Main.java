@@ -32,6 +32,7 @@ public class Main {
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
         System.out.println("aaaaaa");
+        System.out.println("Hello World");
     }
 
 
