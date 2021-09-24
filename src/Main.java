@@ -32,7 +32,7 @@ public class Main {
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
         int a = 20;
-       
+        int b = 20;
     }
 
 
