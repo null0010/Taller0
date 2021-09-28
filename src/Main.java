@@ -1,9 +1,14 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         String[] listaNombresClientes = new String[999];
         String[] listaApellidosClientes = new String[999];
         String[] listaRutsClientes = new String[999];
-        String[] listaContraseasClientes = new String[999];
+        String[] listaContraseñasClientes = new String[999];
+        int[] listaSaldosClientes = new int[999];
         String[] listaEstadoPaseMovilidadClientes = new String[999];
 
         String[] listaNombresPeliculasEntradasCompradas = new String[999];
@@ -54,6 +59,40 @@ public class Main {
         }
 
         return matrizSala;
+    }
+
+
+    public static int leerArchivoClientes(String[] listaNombresClientes,
+                                          String[] listaApellidosClientes,
+                                          String[] listaRutsClientes,
+                                          String[] listaContraseñasClientes,
+                                          int[] listaSaldosClientes) {
+
+        File archivoCliente = new File("archivos/clientes.txt");
+        int cantidadClientes = 0;
+        try (Scanner scannerFile = new Scanner(archivoCliente)) {
+            while (scannerFile.hasNext()) {
+                String linea = scannerFile.next();
+                String[] partes = linea.split(",");
+                String nombre = partes[0];
+                String apellido = partes[1];
+                String rut = partes[2];
+                String contraseña = partes[3];
+                int saldo = Integer.parseInt(partes[4]);
+
+                listaNombresClientes[cantidadClientes] = nombre;
+                listaApellidosClientes[cantidadClientes] = apellido;
+                listaRutsClientes[cantidadClientes] = rut;
+                listaContraseñasClientes[cantidadClientes] = contraseña;
+                listaSaldosClientes[cantidadClientes] = saldo;
+                cantidadClientes++;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return cantidadClientes;
     }
     
 }
