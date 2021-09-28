@@ -1,9 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
         String[] listaNombresClientes = new String[999];
         String[] listaApellidosClientes = new String[999];
         String[] listaRutsClientes = new String[999];
@@ -14,17 +17,8 @@ public class Main {
         String[] listaNombresPeliculasEntradasCompradas = new String[999];
         int[] listaHorariosEntradasCompradas = new int[999];
         String[] listaAsientosEntradasCompradas = new String[999];
-        String[] listaFilasSalas = {"A",
-                                    "B",
-                                    "C",
-                                    "D",
-                                    "E",
-                                    "F",
-                                    "G",
-                                    "H",
-                                    "I",
-                                    "J"};
 
+        String[] listaFilasSalas = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
         int[][] matrizSalaCine1 = generarSalaCine();
         int[][] matrizSalaCine2 = generarSalaCine();
         int[][] matrizSalaCine3 = generarSalaCine();
@@ -37,21 +31,22 @@ public class Main {
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
 
-
         int cantidadClientes = leerArchivoClientes(listaNombresClientes,
                                                    listaApellidosClientes,
                                                    listaRutsClientes,
                                                    listaContraseñasClientes,
                                                    listaSaldosClientes);
-
         leerArchivoStatus(listaRutsClientes,
                           listaEstadoPaseMovilidadClientes,
                           cantidadClientes);
-
         int cantidadPeliculas = leerArchivoPeliculas(listaNombresPeliculas,
                 listaTipoPeliculas,
                 listaRecaudacionesPeliculas,
                 matrizHorariosFuncionesSalas);
+
+        iniciarSesion(input);
+        cerrarSesion();
+        input.close();
     }
 
 
@@ -185,5 +180,121 @@ public class Main {
         }
 
         return -1;
+    }
+
+
+    public static String obtenerRutFormateado(String rut) {
+        Pattern PATRON_RUT = Pattern.compile("([0-9]{1,2})\\.?([0-9]{3})\\.?([0-9]{3})-?([0-9]|k)",
+                Pattern.CASE_INSENSITIVE);
+        Matcher rutMatcher = PATRON_RUT.matcher(rut);
+        String rutFormateado = "";
+        if (rutMatcher.matches()) {
+            rutFormateado = rutMatcher.group(1);
+            rutFormateado += "." + rutMatcher.group(2);
+            rutFormateado += "." + rutMatcher.group(3);
+            rutFormateado += "-" + rutMatcher.group(4);
+        }
+
+        return rutFormateado;
+    }
+
+    public static void iniciarSesion(Scanner input) {
+        boolean sesionActiva = true;
+        while (sesionActiva) {
+            System.out.print("Ingrese su RUT: ");
+            String rut = input.next();
+            input.nextLine();
+            System.out.print("Ingrese su contraseña: ");
+            String contraseña = input.nextLine();
+            if (rut.equals("ADMIN") && contraseña.equals("ADMIN")) {
+                //menuAdmin();
+                sesionActiva = false;
+            }
+            else {
+                String rutFormateado = obtenerRutFormateado(rut);
+                boolean esRutValido = !rutFormateado.equals("");
+                if (esRutValido) {
+                    //menuUsuario();
+                    sesionActiva = false;
+                    System.out.println(rutFormateado);
+                }
+                else {
+                    System.out.println("Rut y/o contraseña incorrectos.");
+                }
+            }
+
+            if (sesionActiva) {
+                System.out.println("[1] Iniciar sesión nuevamente.");
+                System.out.println("[2] Cerrar sistema.");
+                System.out.print("Ingrese una opcion: ");
+                int opcion = input.nextInt();
+                while (opcion < 1 || opcion > 2) {
+                    System.out.print("Error, ingrese una opcion nuevamente: ");
+                    opcion = input.nextInt();
+                }
+
+                if (opcion == 2) {
+                    sesionActiva = false;
+                }
+            }
+        }
+    }
+
+    public static void menuUsuario(Scanner input) {
+        int opcion = 0;
+        while (opcion != 5) {
+            System.out.println("Bienvenido al Menu Usuario");
+            System.out.println("[1] Comprar entrada");
+            System.out.println("[2] Informacion usuario");
+            System.out.println("[3] Devolver entrada");
+            System.out.println("[4] Cartelera");
+            System.out.println("[5] Cerrar Sesion");
+            System.out.print("Ingrese una opcion: ");
+            opcion = input.nextInt();
+            while (opcion < 1 || opcion > 5) {
+                System.out.print("Error, Ingrese una opcion nuevamente: ");
+                opcion = input.nextInt();
+            }
+
+            switch (opcion) {
+                case 1:
+                    //comprarEntrada();
+                    break;
+                case 2:
+                    //desplegarInformacionUsuario();
+                    break;
+                case 3:
+                    //devolverEntrada();
+                    break;
+                case 4:
+                    //desplegarInformacionCartelera();
+                    break;
+                case 5:
+                    break;
+            }
+        }
+    }
+
+
+    public static void menuAdmin(Scanner input) {
+        int opcion = 0;
+        while (opcion != 5) {
+            System.out.println("Bienvenido al Menu Admin");
+            System.out.println("[1] Información taquilla");
+            System.out.println("[2] Informacion cliente");
+            System.out.println("[3] Cerrar Sesion");
+
+            System.out.print("Ingrese una opcion: ");
+            opcion = input.nextInt();
+            while (opcion < 1 || opcion > 5) {
+                System.out.print("Error, Ingrese una opcion nuevamente: ");
+                opcion = input.nextInt();
+            }
+        }
+    }
+
+    public static void cerrarSesion() {
+
+
     }
 }
