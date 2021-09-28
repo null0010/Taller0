@@ -252,7 +252,7 @@ public class Main {
             System.out.print("Ingrese una opcion: ");
             opcion = input.nextInt();
             while (opcion < 1 || opcion > 5) {
-                System.out.print("Error, Ingrese una opcion nuevamente: ");
+                System.out.print("Error, ingrese una opcion nuevamente: ");
                 opcion = input.nextInt();
             }
 
@@ -289,6 +289,17 @@ public class Main {
             while (opcion < 1 || opcion > 5) {
                 System.out.print("Error, Ingrese una opcion nuevamente: ");
                 opcion = input.nextInt();
+            }
+
+            switch (opcion) {
+                case 1:
+                    //desplegarInformacionTaquilla();
+                    break;
+                case 2:
+                    //desplegarInformacionCliente();
+                    break;
+                case 3:
+                    break;
             }
         }
     }
