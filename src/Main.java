@@ -287,7 +287,7 @@ public class Main {
             System.out.print("Ingrese una opcion: ");
             opcion = input.nextInt();
             while (opcion < 1 || opcion > 5) {
-                System.out.print("Error, Ingrese una opcion nuevamente: ");
+                System.out.print("Error, ingrese una opcion nuevamente: ");
                 opcion = input.nextInt();
             }
 
