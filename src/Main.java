@@ -14,7 +14,6 @@ public class Main {
         String[] listaNombresPeliculasEntradasCompradas = new String[999];
         int[] listaHorariosEntradasCompradas = new int[999];
         String[] listaAsientosEntradasCompradas = new String[999];
-
         String[] listaFilasSalas = {"A",
                                     "B",
                                     "C",
@@ -25,6 +24,7 @@ public class Main {
                                     "H",
                                     "I",
                                     "J"};
+
         int[][] matrizSalaCine1 = generarSalaCine();
         int[][] matrizSalaCine2 = generarSalaCine();
         int[][] matrizSalaCine3 = generarSalaCine();
@@ -36,7 +36,22 @@ public class Main {
         int[] listaRecaudacionesMañanaPeliculas = new int[999];
         int[] listaRecaudacionesTardePeliculas = new int[999];
         int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
-        int c = 1000;
+
+
+        int cantidadClientes = leerArchivoClientes(listaNombresClientes,
+                                                   listaApellidosClientes,
+                                                   listaRutsClientes,
+                                                   listaContraseñasClientes,
+                                                   listaSaldosClientes);
+
+        leerArchivoStatus(listaRutsClientes,
+                          listaEstadoPaseMovilidadClientes,
+                          cantidadClientes);
+
+        int cantidadPeliculas = leerArchivoPeliculas(listaNombresPeliculas,
+                listaTipoPeliculas,
+                listaRecaudacionesPeliculas,
+                matrizHorariosFuncionesSalas);
     }
 
 
@@ -47,8 +62,6 @@ public class Main {
         for (int f = 0; f < NUMERO_FILAS - 6; f++) {
             for (int c = 5; c < NUMERO_COLUMNAS - 5; c++) {
                 matrizSala[f][c] = -1;
-            System.out.println("esto esta creeado en la rama aaaaaa");
-            
             }
         }
 
@@ -94,5 +107,83 @@ public class Main {
 
         return cantidadClientes;
     }
-    
+
+    public static void leerArchivoStatus(String[] listaRutsClientes,
+                                         String[] listaEstadoPaseMovilidadClientes,
+                                         int cantidadClientes) {
+
+        File archivoStatus= new File("archivos/status.txt");
+        try (Scanner scannerFile = new Scanner(archivoStatus)) {
+            while (scannerFile.hasNext()) {
+                String linea = scannerFile.nextLine();
+                String[] partes = linea.split(",");
+                String rut = partes[0];
+                String status = partes[1];
+                int posicionCliente = obtenerPosicionCliente(rut, listaRutsClientes, cantidadClientes);
+                if (posicionCliente != -1) {
+                    listaEstadoPaseMovilidadClientes[posicionCliente] = status;
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static int leerArchivoPeliculas(String[] listaNombresPeliculas,
+                                           String[] listaTipoPeliculas,
+                                           int[] listaRecaudacionesPeliculas,
+                                           int[][] matrizHorariosFuncionesSalas) {
+        File archivoPeliculas = new File("archivos/peliculas.txt");
+        int cantidadPeliculas = 0;
+        try (Scanner scannerFile = new Scanner(archivoPeliculas)) {
+            while (scannerFile.hasNext()) {
+                String linea = scannerFile.nextLine();
+                String[] partes = linea.split(",", 4);
+                String nombre = partes[0];
+                String tipo = partes[1];
+                int recaudacionActual = Integer.parseInt(partes[2]);
+                String[] partesFunciones = partes[3].split(",");
+
+                listaNombresPeliculas[cantidadPeliculas] = nombre;
+                listaTipoPeliculas[cantidadPeliculas] = tipo;
+                listaRecaudacionesPeliculas[cantidadPeliculas] = recaudacionActual;
+
+                for (int f = 0; f < partesFunciones.length; f+=2) {
+                    int numeroSala = Integer.parseInt(partesFunciones[f]);
+                    String horario = partesFunciones[f + 1];
+                    if (matrizHorariosFuncionesSalas[cantidadPeliculas][numeroSala - 1] != 0) {
+                        matrizHorariosFuncionesSalas[cantidadPeliculas][numeroSala - 1] = 2;
+                    }
+                    else if (horario.equalsIgnoreCase("M")) {
+                        matrizHorariosFuncionesSalas[cantidadPeliculas][numeroSala - 1] = -1;
+                    }
+                    else if (horario.equalsIgnoreCase("T")) {
+                        matrizHorariosFuncionesSalas[cantidadPeliculas][numeroSala - 1] = 1;
+                    }
+                }
+
+                cantidadPeliculas++;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return cantidadPeliculas;
+    }
+
+    public static int obtenerPosicionCliente(String rut,
+                                             String[] listaRutsClientes,
+                                             int cantidadClientes) {
+        int i;
+        for (i = 0; (i < cantidadClientes) && !listaRutsClientes[i].equals(rut); i++);
+
+        if (i < cantidadClientes && listaRutsClientes[i].equals(rut)) {
+            return i;
+        }
+
+        return -1;
+    }
 }
