@@ -40,9 +40,9 @@ public class Main {
                           listaEstadoPaseMovilidadClientes,
                           cantidadClientes);
         int cantidadPeliculas = leerArchivoPeliculas(listaNombresPeliculas,
-                listaTipoPeliculas,
-                listaRecaudacionesPeliculas,
-                matrizHorariosFuncionesSalas);
+                                                     listaTipoPeliculas,
+                                                     listaRecaudacionesPeliculas,
+                                                     matrizHorariosFuncionesSalas);
 
         iniciarSesion(input);
         cerrarSesion();
@@ -75,7 +75,6 @@ public class Main {
                                           String[] listaRutsClientes,
                                           String[] listaContraseñasClientes,
                                           int[] listaSaldosClientes) {
-
         File archivoCliente = new File("archivos/clientes.txt");
         int cantidadClientes = 0;
         try (Scanner scannerFile = new Scanner(archivoCliente)) {
@@ -106,7 +105,6 @@ public class Main {
     public static void leerArchivoStatus(String[] listaRutsClientes,
                                          String[] listaEstadoPaseMovilidadClientes,
                                          int cantidadClientes) {
-
         File archivoStatus= new File("archivos/status.txt");
         try (Scanner scannerFile = new Scanner(archivoStatus)) {
             while (scannerFile.hasNext()) {
