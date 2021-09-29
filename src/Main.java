@@ -246,7 +246,7 @@ public class Main {
             System.out.println("[2] Informacion usuario");
             System.out.println("[3] Devolver entrada");
             System.out.println("[4] Cartelera");
-            System.out.println("[5] Cerrar Sesion");
+            System.out.println("[5] Cerrar sistema");
             System.out.print("Ingrese una opcion: ");
             opcion = input.nextInt();
             while (opcion < 1 || opcion > 5) {
@@ -280,7 +280,7 @@ public class Main {
             System.out.println("Bienvenido al Menu Admin");
             System.out.println("[1] Información taquilla");
             System.out.println("[2] Informacion cliente");
-            System.out.println("[3] Cerrar Sesion");
+            System.out.println("[3] Cerrar sistema");
 
             System.out.print("Ingrese una opcion: ");
             opcion = input.nextInt();
