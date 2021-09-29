@@ -19,17 +19,16 @@ public class Main {
         String[] listaAsientosEntradasCompradas = new String[999];
 
         String[] listaFilasSalas = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-        int[][] matrizSalaCine1 = generarSalaCine();
-        int[][] matrizSalaCine2 = generarSalaCine();
-        int[][] matrizSalaCine3 = generarSalaCine();
+        int[][] matrizCineSala1 = generarSalaCine();
+        int[][] matrizCineSala2 = generarSalaCine();
+        int[][] matrizCineSala3 = generarSalaCine();
         int[][] matrizHorariosFuncionesSalas = new int[999][3];
 
         String[] listaNombresPeliculas = new String[999];
         String[] listaTipoPeliculas = new String[999];
-        int[] listaRecaudacionesPeliculas = new int[999];
-        int[] listaRecaudacionesMañanaPeliculas = new int[999];
-        int[] listaRecaudacionesTardePeliculas = new int[999];
-        int[] listaRecaudacionesDuranteDiaPeliculas = new int[999];
+        int[] listaRecaudacionesTotalPeliculas = new int[999];
+        int[][] matrizRecaudacionesPeliculas = new int[999][2];
+
 
         int cantidadClientes = leerArchivoClientes(listaNombresClientes,
                                                    listaApellidosClientes,
@@ -41,10 +40,28 @@ public class Main {
                           cantidadClientes);
         int cantidadPeliculas = leerArchivoPeliculas(listaNombresPeliculas,
                                                      listaTipoPeliculas,
-                                                     listaRecaudacionesPeliculas,
+                                                     listaRecaudacionesTotalPeliculas,
                                                      matrizHorariosFuncionesSalas);
 
-        iniciarSesion(input);
+        iniciarSesion(input,
+                      listaNombresClientes,
+                      listaApellidosClientes,
+                      listaRutsClientes,
+                      listaContraseñasClientes,
+                      listaSaldosClientes,
+                      listaEstadoPaseMovilidadClientes,
+                      listaNombresPeliculasEntradasCompradas,
+                      listaHorariosEntradasCompradas,
+                      listaAsientosEntradasCompradas,
+                      listaFilasSalas,
+                      matrizCineSala1,
+                      matrizCineSala2,
+                      matrizCineSala3,
+                      matrizHorariosFuncionesSalas,
+                      listaNombresPeliculas,
+                      listaTipoPeliculas,
+                      listaRecaudacionesTotalPeliculas,
+                      matrizRecaudacionesPeliculas);
         cerrarSesion();
         input.close();
     }
@@ -126,7 +143,7 @@ public class Main {
 
     public static int leerArchivoPeliculas(String[] listaNombresPeliculas,
                                            String[] listaTipoPeliculas,
-                                           int[] listaRecaudacionesPeliculas,
+                                           int[] listaRecaudacionesTotalPeliculas,
                                            int[][] matrizHorariosFuncionesSalas) {
         File archivoPeliculas = new File("archivos/peliculas.txt");
         int cantidadPeliculas = 0;
@@ -141,7 +158,7 @@ public class Main {
 
                 listaNombresPeliculas[cantidadPeliculas] = nombre;
                 listaTipoPeliculas[cantidadPeliculas] = tipo;
-                listaRecaudacionesPeliculas[cantidadPeliculas] = recaudacionActual;
+                listaRecaudacionesTotalPeliculas[cantidadPeliculas] = recaudacionActual;
 
                 for (int f = 0; f < partesFunciones.length; f+=2) {
                     int numeroSala = Integer.parseInt(partesFunciones[f]);
@@ -196,7 +213,25 @@ public class Main {
         return rutFormateado;
     }
 
-    public static void iniciarSesion(Scanner input) {
+    public static void iniciarSesion(Scanner input,
+                                     String[] listaNombresClientes,
+                                     String[] listaApellidosClientes,
+                                     String[] listaRutsClientes,
+                                     String[] listaContraseñasClientes,
+                                     int[] listaSaldosClientes,
+                                     String[] listaEstadoPaseMovilidadClientes,
+                                     String[] listaNombresPeliculasEntradasCompradas,
+                                     int[] listaHorariosEntradasCompradas,
+                                     String[] listaAsientosEntradasCompradas,
+                                     String[] listaFilasSalas,
+                                     int[][] matrizCineSala1,
+                                     int[][] matrizCineSala2,
+                                     int[][] matrizCineSala3,
+                                     int[][] matrizHorariosFuncionesSalas,
+                                     String[] listaNombresPeliculas,
+                                     String[] listaTipoPeliculas,
+                                     int[] listaRecaudacionesTotalPeliculas,
+                                     int[][] matrizRecaudacionesPeliculas) {
         boolean sesionActiva = true;
         while (sesionActiva) {
             System.out.print("Ingrese su RUT: ");
@@ -223,7 +258,7 @@ public class Main {
 
             if (sesionActiva) {
                 System.out.println("[1] Iniciar sesión nuevamente.");
-                System.out.println("[2] Cerrar sistema.");
+                System.out.println("[2] Cerrar sesion.");
                 System.out.print("Ingrese una opcion: ");
                 int opcion = input.nextInt();
                 while (opcion < 1 || opcion > 2) {
@@ -246,7 +281,7 @@ public class Main {
             System.out.println("[2] Informacion usuario");
             System.out.println("[3] Devolver entrada");
             System.out.println("[4] Cartelera");
-            System.out.println("[5] Cerrar sistema");
+            System.out.println("[5] Cerrar sesion");
             System.out.print("Ingrese una opcion: ");
             opcion = input.nextInt();
             while (opcion < 1 || opcion > 5) {
@@ -256,7 +291,7 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    //comprarEntrada();
+                    comprarEntrada();
                     break;
                 case 2:
                     //desplegarInformacionUsuario();
@@ -306,4 +341,18 @@ public class Main {
 
 
     }
+
+
+    public static void comprarEntrada() {
+        desplegarHorariosDisponiblesPelicula();
+
+    }
+
+
+    public static void desplegarHorariosDisponiblesPelicula() {
+
+
+
+    }
+
 }
