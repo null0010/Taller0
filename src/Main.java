@@ -1,11 +1,22 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/**
+ * @author Mauricio Alarcón
+ *         Francisco Bordones
+ */
+
+
+
 public class Main {
+
+    /***
+     * Se encarga de iniciar el programa
+     */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String[] listaNombresClientes = new String[999];
@@ -391,6 +402,17 @@ public class Main {
         }
     }
 
+
+    /**
+     * Registra un usuario nuevo
+     * @param input Almacena los datos leidos por pantalla
+     * @param listaNombresClientes Corresponde a la lista de nombres de los clientes
+     * @param listaApellidosClientes Corresponde a la lista de apellidos de los clientes
+     * @param listaRutsClientes Corresponde a la lista de ruts de los clientes
+     * @param listaContraseñasClientes Corresponde a la lista de contraseñas de los clientes
+     * @param listaSaldosClientes Corresponde a la lista de saldos de los clientes
+     * @param listaEstadoPaseMovilidadClientes Corresponde a la lista de estado de pases de movilidad de los clientes
+     * @param cantidadClientes Almacena la cantidad de clientes que hay en el sistema*/
     public static void registrarUsuario(Scanner input,
                                         String[] listaNombresClientes,
                                         String[] listaApellidosClientes,
@@ -430,6 +452,28 @@ public class Main {
         listaEstadoPaseMovilidadClientes[cantidadClientes] = estadoPaseMovilidad;
     }
 
+
+
+    /** Se despliega el menu de usuario con sus opciones
+     * @param input Almacena los datos ingresado por pantalla
+     * @param rut Guarda el rut del usuario registrado
+     * @param listaNombresClientes Corresponde a la lista de nombres de los clientes
+     * @param listaApellidosClientes Corresponde a la lista de apellidos de los clientes
+     * @param listaRutsClientes Corresponde a la lista de ruts de los clientes
+     * @param listaContraseñasClientes Corresponde a la lista de contraseñas de los clientes
+     * @param listaSaldosClientes Corresponde a la lista de saldos de los clientes
+     * @param listaEstadoPaseMovilidadClientes Corresponde a la lista de estado de pases de movilidad de los clientes
+     * @param listaNombresPeliculasEntradasCompradas
+     * @param listaNombresPeliculas Corresponde a la lista que contiene los nombre de las peliculas
+     * @param listaTipoPeliculas Corresponde a la lista que contiene el tipo de cada pelicula
+     * @param matrizHorariosFuncionesSalas Corresponde a la matriz que contiene los horarios de las funciones de cada sala
+     * @param listaFilasSalas Corresponde a la lista de filas de las salas
+     * @param matrizCineSala1 Corresponde a la matriz sala 1
+     * @param matrizCineSala2 Corresponde a la matriz sala 2
+     * @param matrizCineSala3 Corresponde a la matriz sala 3
+     * @param cantidadClientes Cantidad de clientes que se encuentran en el sistema
+     * @param cantidadPeliculas Cantidad de peliculas que se encuentran en el sistema
+     */
     public static void menuUsuario(Scanner input,
                                    String rut,
                                    String[] listaNombresClientes,
@@ -502,6 +546,20 @@ public class Main {
     }
 
 
+    /**
+     * Despliega el menú para el admin
+     * @param input
+     * @param listaRecaudacionesTotalPeliculas
+     * @param matrizRecaudacionesPeliculas
+     * @param listaNombresClientes
+     * @param listaApellidosClientes
+     * @param listaSaldosClientes
+     * @param listaHorariosEntradasCompradas
+     * @param listaAsientosEntradasCompradas
+     * @param listaNombresPeliculas
+     * @param cantidadPeliculas
+     * @param cantidadClientes
+     */
     public static void menuAdmin(Scanner input,
                                  int[] listaRecaudacionesTotalPeliculas,
                                  int[][] matrizRecaudacionesPeliculas,
@@ -553,21 +611,38 @@ public class Main {
 
     }
 
+
+
+    /** Despliega la informacion de un cliente
+     * @param listaNombresClientes Corresponde a la lista de nombres de los clientes
+     * @param listaApellidosClientes Corresponde a la lista de apellidos de los clientes
+     * @param listaSaldosClientes Corresponde a la lista de saldos de los clientes
+     * @param listaHorariosEntradasCompradas Corresponde a la lista de horarios de entradas compradas
+     * @param listaAsientosEntradasCompradas Corresponde a la lista de asientos de entradas compradas
+     * @param cantidadClientes Almacena la cantidad de clientes que hay en el sistema
+     */
     public static void desplegarInformacionCliente(String[] listaNombresClientes,
                                                    String[] listaApellidosClientes,
                                                    int[] listaSaldosClientes,
                                                    int[] listaHorariosEntradasCompradas,
                                                    String[] listaAsientosEntradasCompradas,
                                                    int cantidadClientes) {
+        System.out.print("Ingrese el rut del cliente: ");
+
         for (int c = 0; c < cantidadClientes; c++) {
-
-
-
+            System.out.println(listaNombresClientes[c]);
+            System.out.println(listaApellidosClientes[c]);
+            System.out.println(listaSaldosClientes[c]);
         }
-
-
     }
 
+    /**
+     * Despliega la informacion de la taquilla, su recaudacion total y la recaudacion a lo largo del día.
+     * @param listaRecaudacionesTotalPeliculas Lista que guarda la recaudacion de cada pelicula.
+     * @param matrizRecaudacionesPeliculas Guarda las recaudaciones de las peliculas.
+     * @param listaNombresPeliculas Guarda los nombres de cada pelicula.
+     * @param cantidadPeliculas Guarda la cantidad e peliculas que se muestran.
+     */
     public static void desplegarInformacionTaquilla(int[] listaRecaudacionesTotalPeliculas,
                                                     int[][] matrizRecaudacionesPeliculas,
                                                     String[] listaNombresPeliculas,
@@ -582,8 +657,15 @@ public class Main {
             System.out.println("Recaudacion a lo largo del dia: " + recaudacionDuranteElDia);
         }
     }
-
-
+    /**
+    * Despliega la por pantalla la informaciondel usuario
+    * @param rut
+    * @param listaNombresClientes
+    * @param listaApellidosClientes
+    * @param listaRutsClientes
+    * @param listaSaldosClientes
+    * @param cantidadClientes
+    */
     public static void desplegarInformacionUsuario(String rut,
                                                    String[] listaNombresClientes,
                                                    String[] listaApellidosClientes,
@@ -595,8 +677,16 @@ public class Main {
         System.out.println(listaApellidosClientes[posicionUsuario]);
         System.out.println(listaRutsClientes[posicionUsuario]);
         System.out.println(listaSaldosClientes[posicionUsuario]);
+
     }
 
+
+    /**
+    * Despliega por pantalla el horario de cada pelicula
+    * @param listaNombresPeliculas contiene el nombre de cada pelicula
+    * @param matrizHorariosFuncionesSalas contiene el horario de cada funcion y sala
+    * @param cantidadPeliculas Contiene la cantidad de peliculas para mostrar
+    */
     public static void desplegarInformacionCartelera(String[] listaNombresPeliculas,
                                                      int[][] matrizHorariosFuncionesSalas,
                                                      int cantidadPeliculas) {
@@ -621,7 +711,21 @@ public class Main {
         }
     }
 
-
+    /**
+     * Se encarga de realizar la compra de una entrada, manejando excepciones y llenando las matrices ingresadas en caso de que la compra haya sido exitosa.
+     * @param input Se encarga de guarda los datos ingresados por pantalla
+     * @param listaNombresPeliculas Arreglo que almacena los nombres de las peliculas.
+     * @param listaTipoPeliculas Corresponde a la lista que contiene el tipo de cada pelicula
+     * @param matrizHorariosFuncionesSalas Corresponde a la matriz que contiene los horarios de las funciones de cada sala
+     * @param listaFilasSalas Corresponde a la lista de filas de las salas
+     * @param matrizCineSala1 Corresponde a la matriz sala 1
+     * @param matrizCineSala2 Corresponde a la matriz sala 2
+     * @param matrizCineSala3 Corresponde a la matriz sala 3
+     * @param listaSaldosClientes Corresponde a la lista de saldos de los clientes
+     * @param listaRutsClientes Corresponde a la lista de ruts de los clientes
+     * @param cantidadClientes cantidadClientes Corresponde a la cantidad de clientes
+     * @param cantidadPeliculas cantidadPeliculas Corresponde a la cantidad de peliculas
+    */
     public static void comprarEntrada(Scanner input,
                                       String rut,
                                       String[] listaNombresPeliculas,
@@ -644,9 +748,7 @@ public class Main {
                 cantidadPeliculas);
         if (posicionPelicula != -1) {
             desplegarHorariosDisponiblesPelicula(posicionPelicula,
-                    listaNombresPeliculas,
-                    matrizHorariosFuncionesSalas,
-                    cantidadPeliculas);
+                                                  matrizHorariosFuncionesSalas);
 
             System.out.print("Ingrese el numero de la sala: ");
             int numeroSala = input.nextInt() - 1;
@@ -678,7 +780,11 @@ public class Main {
         }
     }
 
-
+    /**
+     * Obtiene el total de la compra para el total de entradas que compra un cliente, retorna un entero con el valor total.
+     * @param numeroEntradas Guarda el numero de entradas que el cliente va a comprar.
+     * @param tipoPelicula Guarda el tipo de pelicula a comprar para así dar un valor distinto dependiendo el tipo.
+    */
     public static int obtenerTotalCompra(int numeroEntradas, String tipoPelicula) {
         int total = 0;
         if (tipoPelicula.equalsIgnoreCase("estreno")) {
@@ -692,6 +798,11 @@ public class Main {
     }
 
 
+    /**
+     * Muestra la sala de cine y sus respectivos asientos disponibles..
+     * @param matrizCineSala corresponde a la matriz de cada sala ingresada.
+     * @param listaFilasSalas Corresponde a la listas de las filas de cada sala.
+    */
     public static void desplegarAsientosFuncionPeliculas(int[][] matrizCineSala,
                                                          String[] listaFilasSalas) {
         int NUMERO_FILAS = 10;
@@ -740,13 +851,17 @@ public class Main {
     }
 
 
+    /***
+     * Se encargara de desplegar los horarios disponibles de una pelicula
+     * @param posicionPelicula Corresponde a la posicion de la pelicula
+     * @param matrizHorariosFuncionesSalas Corresponde a la matriz que alman
+     *
+     */
     public static void desplegarHorariosDisponiblesPelicula(int posicionPelicula,
-                                                            String[] listaNombresPeliculas,
-                                                            int[][] matrizHorariosFuncionesSala,
-                                                            int cantidadPeliculas) {
+                                                            int[][] matrizHorariosFuncionesSalas) {
         for (int c = 0; c < 3; c++) {
             System.out.println("Sala " + (c + 1));
-            int horario = matrizHorariosFuncionesSala[posicionPelicula][c];
+            int horario = matrizHorariosFuncionesSalas[posicionPelicula][c];
             System.out.println("Horarios:");
             if (horario == 1) {
                 System.out.println("[1] Tarde");
@@ -766,6 +881,4 @@ public class Main {
             System.out.println();
         }
     }
-
-
 }
